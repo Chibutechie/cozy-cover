@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-gray-900 bg-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-300 font-medium;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 border border-gray-900 text-gray-900 rounded-md hover:bg-gray-50 transition-colors duration-300 font-medium;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
