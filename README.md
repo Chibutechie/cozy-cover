@@ -1,4 +1,4 @@
-# YDS Bedding Clone
+# Cozy Cover Beddings
 
 This is a premium e-commerce bedding website built with React, Vite, and Tailwind CSS.
 
