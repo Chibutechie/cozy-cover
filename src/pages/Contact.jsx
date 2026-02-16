@@ -98,10 +98,9 @@ const Contact = () => {
                                             <FiMapPin size={18} />
                                         </div>
                                         <div>
-                                            <p className="font-medium text-primary-900">Bedding Boutique</p>
+                                            <p className="font-medium text-primary-900">Address</p>
                                             <p className="text-primary-700 leading-relaxed">
-                                                123 Serenity Drive, Suite 400<br />
-                                                Victoria Island, Lagos, Nigeria
+                                                Jedo mega city estates Ushafa, Abuja
                                             </p>
                                         </div>
                                     </div>
@@ -111,7 +110,7 @@ const Contact = () => {
                                         </div>
                                         <div>
                                             <p className="font-medium text-primary-900">Phone</p>
-                                            <p className="text-primary-700">+234 (0) 800-COZY-BED</p>
+                                            <p className="text-primary-700">+234 905 886 6084</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-4">
