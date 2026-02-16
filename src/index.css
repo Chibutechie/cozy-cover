@@ -2,9 +2,40 @@
 
 @import "tailwindcss";
 
+@theme {
+  /* Brown Palette */
+  --color-primary-50: #fdf8f6;
+  --color-primary-100: #f2e8e5;
+  --color-primary-200: #eaddd7;
+  --color-primary-300: #d1beb7;
+  --color-primary-400: #b59489;
+  --color-primary-50: #9d7c70;
+  --color-primary-600: #856155;
+  --color-primary-700: #715147;
+  --color-primary-800: #5f443c;
+  --color-primary-900: #3e2723;
+  --color-primary-950: #2d1b18;
+
+  /* Beige Palette */
+  --color-accent-50: #fffcf0;
+  --color-accent-100: #fef9e1;
+  --color-accent-200: #f9f1c0;
+  --color-accent-300: #f1e291;
+  --color-accent-400: #e6cc5d;
+  --color-accent-500: #d9b236;
+  --color-accent-600: #bf9228;
+  --color-accent-700: #9c6f23;
+  --color-accent-800: #815a22;
+  --color-accent-900: #6d4c20;
+
+  /* Fonts */
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+}
+
 @layer base {
   body {
-    @apply font-sans antialiased text-gray-900 bg-white;
+    @apply font-sans antialiased text-primary-900 bg-accent-50;
   }
 
   h1,
@@ -19,11 +50,11 @@
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-300 font-medium;
+    @apply px-6 py-3 bg-primary-900 text-white rounded-md hover:bg-primary-800 transition-colors duration-300 font-medium;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 border border-gray-900 text-gray-900 rounded-md hover:bg-gray-50 transition-colors duration-300 font-medium;
+    @apply px-6 py-3 border border-primary-900 text-primary-900 rounded-md hover:bg-accent-50 transition-colors duration-300 font-medium;
   }
 
   .container-custom {

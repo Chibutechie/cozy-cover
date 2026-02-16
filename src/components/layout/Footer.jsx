@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
-                        <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">YDS Bedding</h3>
+                        <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">Cozy Cover Beddings</h3>
                         <p className="text-gray-500 text-sm leading-relaxed">
                             Premium bedding collections designed for restful sleep and restorative comfort. Experience luxury every night.
                         </p>

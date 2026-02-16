@@ -35,13 +35,13 @@ const Navbar = () => {
         <header
             className={clsx(
                 'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-                isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-5'
+                isScrolled ? 'bg-primary-900 shadow-md py-3' : 'bg-primary-800 shadow-sm py-5'
             )}
         >
             <div className="container-custom flex items-center justify-between">
                 {/* Logo */}
-                <Link to="/" className="text-2xl font-serif font-bold tracking-tight text-gray-900">
-                    Cozy Cover
+                <Link to="/" className="text-2xl font-serif font-bold tracking-tight text-white">
+                    Cozy Cover Beddings
                 </Link>
 
                 {/* Desktop Nav */}
@@ -52,8 +52,8 @@ const Navbar = () => {
                             to={link.path}
                             className={({ isActive }) =>
                                 clsx(
-                                    'text-sm font-medium transition-colors hover:text-gray-900',
-                                    isActive ? 'text-gray-900' : 'text-gray-500'
+                                    'text-sm font-medium transition-colors hover:text-accent-100',
+                                    isActive ? 'text-white border-b-2 border-white' : 'text-primary-100'
                                 )
                             }
                         >
@@ -64,17 +64,17 @@ const Navbar = () => {
 
                 {/* Icons */}
                 <div className="flex items-center gap-4">
-                    <button className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
+                    <button className="p-2 text-primary-100 hover:text-white transition-colors">
                         <FiSearch size={20} />
                     </button>
 
                     <button
                         onClick={toggleCart}
-                        className="p-2 text-gray-600 hover:text-gray-900 transition-colors relative"
+                        className="p-2 text-primary-100 hover:text-white transition-colors relative"
                     >
                         <FiShoppingBag size={20} />
                         {cartCount > 0 && (
-                            <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-900 text-[10px] text-white">
+                            <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent-500 text-[10px] text-primary-900 font-bold">
                                 {cartCount}
                             </span>
                         )}
@@ -82,7 +82,7 @@ const Navbar = () => {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden p-2 text-gray-600"
+                        className="md:hidden p-2 text-primary-100"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
                         {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -97,7 +97,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+                        className="md:hidden bg-primary-900 border-t border-primary-800 overflow-hidden"
                     >
                         <nav className="flex flex-col p-4 gap-4">
                             {navLinks.map((link) => (
@@ -107,7 +107,7 @@ const Navbar = () => {
                                     className={({ isActive }) =>
                                         clsx(
                                             'text-lg font-medium transition-colors',
-                                            isActive ? 'text-gray-900' : 'text-gray-500'
+                                            isActive ? 'text-white' : 'text-primary-200'
                                         )
                                     }
                                 >

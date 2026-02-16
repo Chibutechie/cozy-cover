@@ -13,11 +13,11 @@ const Button = ({
     const baseStyles = 'inline-flex items-center justify-center rounded-sm font-medium transition-all duration-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed tracking-wide';
 
     const variants = {
-        primary: 'bg-gray-900 text-white hover:bg-gray-800 active:transform active:scale-95',
-        secondary: 'bg-white text-gray-900 border border-gray-900 hover:bg-gray-50 active:transform active:scale-95',
-        outline: 'bg-transparent text-gray-900 border border-gray-300 hover:border-gray-900',
-        ghost: 'bg-transparent text-gray-900 hover:bg-gray-100',
-        link: 'text-gray-900 underline-offset-4 hover:underline p-0 h-auto',
+        primary: 'bg-primary-900 text-white hover:bg-primary-800 active:transform active:scale-95',
+        secondary: 'bg-white text-primary-900 border border-primary-900 hover:bg-accent-50 active:transform active:scale-95',
+        outline: 'bg-transparent text-primary-900 border border-primary-200 hover:border-primary-900',
+        ghost: 'bg-transparent text-primary-900 hover:bg-accent-50',
+        link: 'text-primary-900 underline-offset-4 hover:underline p-0 h-auto',
     };
 
     const sizes = {
