@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiMinus, FiPlus, FiX } from 'react-icons/fi';
 import Button from '../ui/Button';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -41,6 +42,7 @@ const FilterSidebar = ({
     colors,
     className
 }) => {
+    const { t } = useTranslation();
     const [openSections, setOpenSections] = useState({
         category: true,
         price: true,
@@ -66,12 +68,12 @@ const FilterSidebar = ({
     return (
         <div className={className}>
             <div className="flex justify-between items-center mb-4 lg:hidden">
-                <h2 className="text-lg font-medium text-gray-900">Filters</h2>
+                <h2 className="text-lg font-medium text-gray-900">{t('shop.filters')}</h2>
             </div>
 
             <div className="space-y-1">
                 {/* Category Filter */}
-                <FilterSection title="Category" isOpen={openSections.category} setIsOpen={() => toggleSection('category')}>
+                <FilterSection title={t('filters.category')} isOpen={openSections.category} setIsOpen={() => toggleSection('category')}>
                     <div className="space-y-3">
                         {categories.map((category) => (
                             <div key={category} className="flex items-center">
@@ -92,13 +94,13 @@ const FilterSidebar = ({
                 </FilterSection>
 
                 {/* Price Filter */}
-                <FilterSection title="Price Range" isOpen={openSections.price} setIsOpen={() => toggleSection('price')}>
+                <FilterSection title={t('filters.priceRange')} isOpen={openSections.price} setIsOpen={() => toggleSection('price')}>
                     <div className="flex items-center gap-4">
                         <div className="relative">
                             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
                             <input
                                 type="number"
-                                placeholder="Min"
+                                placeholder={t('filters.min')}
                                 value={filters.minPrice}
                                 onChange={(e) => setFilters(prev => ({ ...prev, minPrice: e.target.value }))}
                                 className="w-full rounded-sm border border-gray-300 py-2 pl-7 text-sm focus:border-gray-900 focus:outline-none"
@@ -109,7 +111,7 @@ const FilterSidebar = ({
                             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
                             <input
                                 type="number"
-                                placeholder="Max"
+                                placeholder={t('filters.max')}
                                 value={filters.maxPrice}
                                 onChange={(e) => setFilters(prev => ({ ...prev, maxPrice: e.target.value }))}
                                 className="w-full rounded-sm border border-gray-300 py-2 pl-7 text-sm focus:border-gray-900 focus:outline-none"
@@ -119,7 +121,7 @@ const FilterSidebar = ({
                 </FilterSection>
 
                 {/* Size Filter */}
-                <FilterSection title="Size" isOpen={openSections.size} setIsOpen={() => toggleSection('size')}>
+                <FilterSection title={t('filters.size')} isOpen={openSections.size} setIsOpen={() => toggleSection('size')}>
                     <div className="space-y-3">
                         {sizes.map((size) => (
                             <div key={size} className="flex items-center">
@@ -140,7 +142,7 @@ const FilterSidebar = ({
                 </FilterSection>
 
                 {/* Color Filter */}
-                <FilterSection title="Color" isOpen={openSections.color} setIsOpen={() => toggleSection('color')}>
+                <FilterSection title={t('filters.color')} isOpen={openSections.color} setIsOpen={() => toggleSection('color')}>
                     <div className="flex flex-wrap gap-3">
                         {colors.map((color) => {
                             const isWhite = color.toLowerCase() === 'white' || color.toLowerCase() === 'ivory';
@@ -181,7 +183,7 @@ const FilterSidebar = ({
             </div>
 
             <Button variant="secondary" className="w-full mt-6" onClick={clearFilters}>
-                Clear All Filters
+                {t('filters.clearAll')}
             </Button>
         </div>
     );

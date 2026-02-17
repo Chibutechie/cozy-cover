@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import Button from '../ui/Button';
 
 const Hero = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="relative h-[90vh] w-full overflow-hidden bg-accent-100">
             {/* Background Texture/Image (Optional, subtle) */}
@@ -22,7 +25,7 @@ const Hero = () => {
                     transition={{ duration: 0.6 }}
                     className="text-sm md:text-base uppercase tracking-[0.2em] mb-4 font-medium text-primary-600"
                 >
-                    Elevate Your Sleep
+                    {t('hero.span')}
                 </motion.span>
 
                 <motion.h1
@@ -31,7 +34,7 @@ const Hero = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium mb-6 leading-tight text-primary-900"
                 >
-                    Comfort <br className="md:hidden" /> Redefined
+                    {t('hero.title')}
                 </motion.h1>
 
                 <motion.p
@@ -40,7 +43,7 @@ const Hero = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="max-w-xl text-lg md:text-xl text-primary-700 mb-10 font-light"
                 >
-                    Discover our premium collection of sustainably sourced, ethically made bedding designed for the modern sanctuary.
+                    {t('hero.subtitle')}
                 </motion.p>
 
                 <motion.div
@@ -50,7 +53,7 @@ const Hero = () => {
                 >
                     <Link to="/shop">
                         <Button size="lg" variant="primary">
-                            Shop Bedding
+                            {t('hero.button')}
                         </Button>
                     </Link>
                 </motion.div>

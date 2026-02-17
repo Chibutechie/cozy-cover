@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
@@ -13,6 +14,7 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 
 const ProductDetail = () => {
+    const { t } = useTranslation();
     const { id } = useParams();
     const { addToCart } = useCart();
     const { addToast } = useToast();
@@ -38,8 +40,8 @@ const ProductDetail = () => {
         setLoading(false);
     }, [id]);
 
-    if (loading) return <div className="pt-32 text-center">Loading...</div>;
-    if (!product) return <div className="pt-32 text-center">Product not found</div>;
+    if (loading) return <div className="pt-32 text-center">{t('common.loading')}</div>;
+    if (!product) return <div className="pt-32 text-center">{t('common.notFound')}</div>;
 
     const images = [product.image, product.hoverImage, product.image, product.hoverImage]; // Creating mock gallery
 
@@ -49,16 +51,16 @@ const ProductDetail = () => {
 
     const handleAddToCart = () => {
         addToCart(product, quantity, selectedSize, selectedColor);
-        addToast(`Added ${quantity} ${product.name} to cart`);
+        addToast(t('common.addedToCart', { name: product.name }));
     };
 
     return (
         <div className="container-custom pt-24 pb-16">
             {/* Breadcrumbs */}
             <nav className="text-sm text-gray-500 mb-8">
-                <Link to="/" className="hover:text-gray-900">Home</Link>
+                <Link to="/" className="hover:text-gray-900">{t('nav.home')}</Link>
                 <span className="mx-2">/</span>
-                <Link to="/shop" className="hover:text-gray-900">Shop</Link>
+                <Link to="/shop" className="hover:text-gray-900">{t('nav.shop')}</Link>
                 <span className="mx-2">/</span>
                 <span className="text-gray-900">{product.name}</span>
             </nav>
@@ -77,7 +79,7 @@ const ProductDetail = () => {
                                 <FiStar className="fill-current" />
                                 <span className="ml-1 text-gray-900">{product.rating}</span>
                                 <span className="text-gray-400 mx-1">|</span>
-                                <span className="text-gray-500 underline">{product.reviews} Reviews</span>
+                                <span className="text-gray-500 underline">{product.reviews} {t('product.reviews')}</span>
                             </div>
                         </div>
                         <p className="text-gray-600 leading-relaxed">{product.description}</p>
@@ -86,7 +88,7 @@ const ProductDetail = () => {
                     <div className="space-y-6 border-y border-gray-100 py-6 mb-6">
                         {/* Colors */}
                         <div>
-                            <h3 className="text-sm font-medium text-gray-900 mb-3">Color: <span className="text-gray-500 font-normal">{selectedColor}</span></h3>
+                            <h3 className="text-sm font-medium text-gray-900 mb-3">{t('product.color')}: <span className="text-gray-500 font-normal">{selectedColor}</span></h3>
                             <div className="flex flex-wrap gap-3">
                                 {product.options.colors.map(color => (
                                     <button
@@ -109,7 +111,7 @@ const ProductDetail = () => {
 
                         {/* Sizes */}
                         <div>
-                            <h3 className="text-sm font-medium text-gray-900 mb-3">Size: <span className="text-gray-500 font-normal">{selectedSize}</span></h3>
+                            <h3 className="text-sm font-medium text-gray-900 mb-3">{t('product.size')}: <span className="text-gray-500 font-normal">{selectedSize}</span></h3>
                             <div className="flex flex-wrap gap-3">
                                 {product.options.sizes.map(size => (
                                     <button
@@ -130,7 +132,7 @@ const ProductDetail = () => {
 
                         {/* Quantity */}
                         <div>
-                            <h3 className="text-sm font-medium text-gray-900 mb-3">Quantity</h3>
+                            <h3 className="text-sm font-medium text-gray-900 mb-3">{t('product.quantity')}</h3>
                             <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
                         </div>
                     </div>
@@ -141,7 +143,7 @@ const ProductDetail = () => {
                             className="flex-1 py-4 text-lg"
                             onClick={handleAddToCart}
                         >
-                            Add to Cart - {formatCurrency(product.price * quantity)}
+                            {t('product.addToCartPrice', { price: formatCurrency(product.price * quantity) })}
                         </Button>
                     </div>
 
@@ -149,17 +151,17 @@ const ProductDetail = () => {
                     <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
                         <div className="flex items-center gap-3">
                             <FiTruck className="w-5 h-5" />
-                            <span>Free shipping over $200</span>
+                            <span>{t('product.freeShipping')}</span>
                         </div>
                         <div className="flex items-center gap-3">
                             <FiRefreshCw className="w-5 h-5" />
-                            <span>30-day returns</span>
+                            <span>{t('product.easyReturns')}</span>
                         </div>
                     </div>
 
                     {/* Features List */}
                     <div className="mt-8 bg-gray-50 p-6 rounded-sm">
-                        <h3 className="font-serif font-medium text-gray-900 mb-4">Product Highlights</h3>
+                        <h3 className="font-serif font-medium text-gray-900 mb-4">{t('product.highlights')}</h3>
                         <ul className="grid grid-cols-1 gap-2">
                             {product.features.map((feature, idx) => (
                                 <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
@@ -175,7 +177,7 @@ const ProductDetail = () => {
             {/* Related Products */}
             {relatedProducts.length > 0 && (
                 <section className="mt-24">
-                    <h2 className="text-2xl font-serif font-medium text-gray-900 mb-8">You May Also Like</h2>
+                    <h2 className="text-2xl font-serif font-medium text-gray-900 mb-8">{t('product.similar')}</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
                         {relatedProducts.map(p => (
                             <ProductCard key={p.id} product={p} />

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { FiShoppingBag, FiStar } from 'react-icons/fi';
 import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
@@ -7,6 +8,7 @@ import { formatCurrency } from '../../utils/formatCurrency';
 import Button from '../ui/Button';
 
 const ProductCard = ({ product }) => {
+    const { t } = useTranslation();
     const { addToCart } = useCart();
     const { addToast } = useToast();
 
@@ -36,10 +38,10 @@ const ProductCard = ({ product }) => {
                         onClick={(e) => {
                             e.preventDefault();
                             addToCart(product, 1, product.options.sizes[0], product.options.colors[0]);
-                            addToast(`Added ${product.name} to cart`);
+                            addToast(t('common.addedToCart', { name: product.name }));
                         }}
                     >
-                        <FiShoppingBag className="mr-2" /> Add to Cart
+                        <FiShoppingBag className="mr-2" /> {t('common.addToCart')}
                     </Button>
                 </div>
             </div>

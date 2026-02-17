@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Hero from '../components/home/Hero';
 import Newsletter from '../components/home/Newsletter';
 import ProductCard from '../components/product/ProductCard';
@@ -5,6 +6,7 @@ import { products } from '../data/products';
 import { motion } from 'framer-motion';
 
 const Home = () => {
+    const { t } = useTranslation();
     // Get best sellers (top 4 rated products)
     const bestSellers = [...products].sort((a, b) => b.rating - a.rating).slice(0, 4);
 
@@ -16,11 +18,11 @@ const Home = () => {
             <section className="py-24 container-custom">
                 <div className="flex justify-between items-end mb-12">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-900 mb-2">Best Sellers</h2>
-                        <p className="text-gray-500">Our customers' favorite picks for a perfect night's sleep.</p>
+                        <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-900 mb-2">{t('home.bestSellers')}</h2>
+                        <p className="text-gray-500">{t('home.bestSellersDesc')}</p>
                     </div>
                     <a href="/shop" className="hidden md:block text-gray-900 font-medium hover:underline underline-offset-4">
-                        View All
+                        {t('home.viewAll')}
                     </a>
                 </div>
 
@@ -32,7 +34,7 @@ const Home = () => {
 
                 <div className="mt-12 text-center md:hidden">
                     <a href="/shop" className="inline-block border border-gray-900 text-gray-900 px-8 py-3 font-medium hover:bg-gray-50">
-                        View All
+                        {t('home.viewAll')}
                     </a>
                 </div>
             </section>

@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useCart } from '../context/CartContext';
 import { formatCurrency } from '../utils/formatCurrency';
 import QuantitySelector from '../components/ui/QuantitySelector';
@@ -6,6 +7,7 @@ import Button from '../components/ui/Button';
 import { FiTrash2, FiArrowLeft } from 'react-icons/fi';
 
 const Cart = () => {
+    const { t } = useTranslation();
     const { cart, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
     const navigate = useNavigate();
     const total = getCartTotal();
@@ -13,10 +15,10 @@ const Cart = () => {
     if (cart.length === 0) {
         return (
             <div className="container-custom pt-32 pb-24 text-center">
-                <h1 className="text-3xl font-serif font-medium text-gray-900 mb-6">Your Cart is Empty</h1>
-                <p className="text-gray-500 mb-8">Looks like you haven't added anything to your cart yet.</p>
+                <h1 className="text-3xl font-serif font-medium text-gray-900 mb-6">{t('cart.empty')}</h1>
+                <p className="text-gray-500 mb-8">{t('cart.emptySubtitle')}</p>
                 <Link to="/shop">
-                    <Button>Start Shopping</Button>
+                    <Button>{t('cart.startShopping')}</Button>
                 </Link>
             </div>
         );
@@ -24,7 +26,7 @@ const Cart = () => {
 
     return (
         <div className="container-custom pt-24 pb-16">
-            <h1 className="text-3xl font-serif font-medium text-gray-900 mb-8">Shopping Cart</h1>
+            <h1 className="text-3xl font-serif font-medium text-gray-900 mb-8">{t('cart.title')}</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div className="lg:col-span-2 space-y-8">
@@ -42,8 +44,8 @@ const Cart = () => {
                                         </h3>
                                         <p className="text-sm text-gray-500">{item.category}</p>
                                         <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-600">
-                                            <p>Size: <span className="text-gray-900">{item.size}</span></p>
-                                            <p>Color: <span className="text-gray-900">{item.color}</span></p>
+                                            <p>{t('product.size')}: <span className="text-gray-900">{item.size}</span></p>
+                                            <p>{t('product.color')}: <span className="text-gray-900">{item.color}</span></p>
                                         </div>
                                     </div>
                                     <p className="text-lg font-medium text-gray-900">{formatCurrency(item.price)}</p>
@@ -58,7 +60,7 @@ const Cart = () => {
                                         onClick={() => removeFromCart(item.id, item.size, item.color)}
                                         className="text-gray-400 hover:text-red-500 transition-colors flex items-center gap-1 text-sm"
                                     >
-                                        <FiTrash2 /> Remove
+                                        <FiTrash2 /> {t('cart.remove')}
                                     </button>
                                 </div>
                             </div>
@@ -67,37 +69,37 @@ const Cart = () => {
 
                     <div className="pt-4">
                         <Link to="/shop" className="text-gray-900 hover:underline flex items-center gap-2 font-medium">
-                            <FiArrowLeft /> Continue Shopping
+                            <FiArrowLeft /> {t('cart.continue')}
                         </Link>
                     </div>
                 </div>
 
                 <div className="lg:col-span-1">
                     <div className="bg-gray-50 p-6 rounded-sm sticky top-24">
-                        <h2 className="text-xl font-serif font-medium text-gray-900 mb-6">Order Summary</h2>
+                        <h2 className="text-xl font-serif font-medium text-gray-900 mb-6">{t('cart.summary')}</h2>
 
                         <div className="space-y-4 mb-6 text-sm text-gray-600">
                             <div className="flex justify-between">
-                                <span>Subtotal</span>
+                                <span>{t('cart.subtotal')}</span>
                                 <span className="font-medium text-gray-900">{formatCurrency(total)}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span>Shipping</span>
-                                <span className="text-green-600 font-medium">Free</span>
+                                <span>{t('cart.shipping')}</span>
+                                <span className="text-green-600 font-medium">{t('cart.shippingFree')}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span>Tax</span>
-                                <span>Calculated at checkout</span>
+                                <span>{t('cart.tax')}</span>
+                                <span>{t('cart.taxDesc')}</span>
                             </div>
                         </div>
 
                         <div className="border-t border-gray-200 pt-4 mb-6 flex justify-between items-center">
-                            <span className="text-lg font-medium text-gray-900">Total</span>
+                            <span className="text-lg font-medium text-gray-900">{t('cart.total')}</span>
                             <span className="text-xl font-serif font-medium text-gray-900">{formatCurrency(total)}</span>
                         </div>
 
                         <Button className="w-full" onClick={() => navigate('/checkout')}>
-                            Proceed to Checkout
+                            {t('cart.checkout')}
                         </Button>
                     </div>
                 </div>
