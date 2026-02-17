@@ -1,12 +1,15 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { products } from '../data/products';
 import ProductCard from '../components/product/ProductCard';
 import FilterSidebar from '../components/product/FilterSidebar';
 import { FiFilter, FiX, FiChevronDown } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
+import Button from '../components/ui/Button';
 
 const Shop = () => {
+    const { t } = useTranslation();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const initialCategory = queryParams.get('category');
@@ -87,9 +90,9 @@ const Shop = () => {
         <div className="container-custom pt-24 pb-16 min-h-screen">
             <div className="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-gray-100 pb-6">
                 <h1 className="text-3xl font-serif font-medium text-gray-900">
-                    All Bedding
+                    {t('shop.title')}
                     <span className="ml-4 text-sm font-sans font-normal text-gray-500">
-                        {filteredProducts.length} items
+                        {filteredProducts.length} {t('shop.items')}
                     </span>
                 </h1>
 
@@ -98,7 +101,7 @@ const Shop = () => {
                         className="md:hidden flex items-center gap-2 text-gray-700 border border-gray-300 px-4 py-2 rounded-sm"
                         onClick={() => setIsMobileFiltersOpen(true)}
                     >
-                        <FiFilter /> Filters
+                        <FiFilter /> {t('shop.filters')}
                     </button>
 
                     <div className="relative flex-1 md:flex-none">
@@ -107,10 +110,10 @@ const Shop = () => {
                             onChange={(e) => setSortBy(e.target.value)}
                             className="appearance-none w-full md:w-48 pl-4 pr-10 py-2 bg-transparent border border-gray-300 rounded-sm focus:outline-none focus:border-gray-900 cursor-pointer"
                         >
-                            <option value="popularity">Most Popular</option>
-                            <option value="newest">Newest</option>
-                            <option value="price-asc">Price: Low to High</option>
-                            <option value="price-desc">Price: High to Low</option>
+                            <option value="popularity">{t('shop.mostPopular')}</option>
+                            <option value="newest">{t('shop.newest')}</option>
+                            <option value="price-asc">{t('shop.priceLowHigh')}</option>
+                            <option value="price-desc">{t('shop.priceHighLow')}</option>
                         </select>
                         <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
                     </div>
@@ -140,13 +143,13 @@ const Shop = () => {
                         </div>
                     ) : (
                         <div className="text-center py-20 bg-gray-50 rounded-lg">
-                            <h3 className="text-lg font-medium text-gray-900 mb-2">No products found</h3>
-                            <p className="text-gray-500 mb-6">Try adjusting your filters to find what you're looking for.</p>
+                            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('shop.noProducts')}</h3>
+                            <p className="text-gray-500 mb-6">{t('shop.tryAdjusting')}</p>
                             <button
                                 onClick={clearFilters}
                                 className="text-gray-900 underline underline-offset-4 hover:text-gray-600"
                             >
-                                Clear all filters
+                                {t('shop.clearFilters')}
                             </button>
                         </div>
                     )}
@@ -172,7 +175,7 @@ const Shop = () => {
                             className="fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white shadow-xl lg:hidden flex flex-col"
                         >
                             <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                                <h2 className="text-lg font-medium text-gray-900">Filters</h2>
+                                <h2 className="text-lg font-medium text-gray-900">{t('shop.filters')}</h2>
                                 <button
                                     onClick={() => setIsMobileFiltersOpen(false)}
                                     className="p-2 text-gray-500 hover:text-gray-900"
@@ -192,7 +195,7 @@ const Shop = () => {
                             </div>
                             <div className="p-4 border-t border-gray-200 bg-gray-50">
                                 <Button className="w-full" onClick={() => setIsMobileFiltersOpen(false)}>
-                                    Show Results ({filteredProducts.length})
+                                    {t('shop.showResults')} ({filteredProducts.length})
                                 </Button>
                             </div>
                         </motion.div>

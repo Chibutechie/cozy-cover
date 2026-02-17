@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { FiMail, FiPhone, FiMapPin, FiInstagram, FiFacebook, FiTwitter } from 'react-icons/fi';
 import Button from '../components/ui/Button';
 
 const Contact = () => {
+    const { t } = useTranslation();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // Simulate form submission
-        alert('Thank you for contacting us! We will get back to you soon.');
+        alert(t('contact.success') || 'Thank you for contacting us!');
     };
 
     return (
@@ -18,9 +21,9 @@ const Contact = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-4xl md:text-5xl font-serif font-medium text-primary-900 mb-4">Contact Us</h1>
+                    <h1 className="text-4xl md:text-5xl font-serif font-medium text-primary-900 mb-4">{t('contact.title')}</h1>
                     <p className="text-primary-700 max-w-2xl mx-auto">
-                        Have questions about our premium bedding? We're here to help you create your perfect sleep sanctuary.
+                        {t('contact.subtitle')}
                     </p>
                 </motion.div>
 
@@ -32,11 +35,11 @@ const Contact = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="bg-white p-8 md:p-12 rounded-sm shadow-sm"
                     >
-                        <h2 className="text-2xl font-serif font-medium text-primary-900 mb-8">Send us a message</h2>
+                        <h2 className="text-2xl font-serif font-medium text-primary-900 mb-8">{t('contact.formTitle')}</h2>
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-primary-800 mb-2">Full Name</label>
+                                    <label htmlFor="name" className="block text-sm font-medium text-primary-800 mb-2">{t('contact.name')}</label>
                                     <input
                                         type="text"
                                         id="name"
@@ -46,7 +49,7 @@ const Contact = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-primary-800 mb-2">Email Address</label>
+                                    <label htmlFor="email" className="block text-sm font-medium text-primary-800 mb-2">{t('contact.email')}</label>
                                     <input
                                         type="email"
                                         id="email"
@@ -57,7 +60,7 @@ const Contact = () => {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="subject" className="block text-sm font-medium text-primary-800 mb-2">Subject</label>
+                                <label htmlFor="subject" className="block text-sm font-medium text-primary-800 mb-2">{t('contact.subject')}</label>
                                 <input
                                     type="text"
                                     id="subject"
@@ -67,7 +70,7 @@ const Contact = () => {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-primary-800 mb-2">Message</label>
+                                <label htmlFor="message" className="block text-sm font-medium text-primary-800 mb-2">{t('contact.message')}</label>
                                 <textarea
                                     id="message"
                                     required
@@ -77,7 +80,7 @@ const Contact = () => {
                                 ></textarea>
                             </div>
                             <Button variant="primary" className="w-full py-4 uppercase tracking-widest text-sm font-bold">
-                                Send Message
+                                {t('contact.submit')}
                             </Button>
                         </form>
                     </motion.div>
@@ -91,14 +94,14 @@ const Contact = () => {
                     >
                         <div className="space-y-12">
                             <section>
-                                <h2 className="text-2xl font-serif font-medium text-primary-900 mb-6">Visit Our Studio</h2>
+                                <h2 className="text-2xl font-serif font-medium text-primary-900 mb-6">{t('contact.visitTitle')}</h2>
                                 <div className="space-y-6">
                                     <div className="flex items-start gap-4">
                                         <div className="mt-1 p-2 bg-primary-900 text-white rounded-sm">
                                             <FiMapPin size={18} />
                                         </div>
                                         <div>
-                                            <p className="font-medium text-primary-900">Address</p>
+                                            <p className="font-medium text-primary-900">{t('contact.address')}</p>
                                             <p className="text-primary-700 leading-relaxed">
                                                 Jedo mega city estates Ushafa, Abuja
                                             </p>
@@ -109,7 +112,7 @@ const Contact = () => {
                                             <FiPhone size={18} />
                                         </div>
                                         <div>
-                                            <p className="font-medium text-primary-900">Phone</p>
+                                            <p className="font-medium text-primary-900">{t('contact.phone')}</p>
                                             <p className="text-primary-700">+234 905 886 6084</p>
                                         </div>
                                     </div>
@@ -118,7 +121,7 @@ const Contact = () => {
                                             <FiMail size={18} />
                                         </div>
                                         <div>
-                                            <p className="font-medium text-primary-900">Email</p>
+                                            <p className="font-medium text-primary-900">{t('contact.email')}</p>
                                             <p className="text-primary-700">Sojustina543@gmail.com</p>
                                         </div>
                                     </div>
@@ -126,7 +129,7 @@ const Contact = () => {
                             </section>
 
                             <section>
-                                <h2 className="text-2xl font-serif font-medium text-primary-900 mb-6">Follow Us</h2>
+                                <h2 className="text-2xl font-serif font-medium text-primary-900 mb-6">{t('contact.follow')}</h2>
                                 <div className="flex gap-4">
                                     {[
                                         { icon: FiInstagram, link: '#' },
@@ -146,9 +149,9 @@ const Contact = () => {
 
                             <div className="p-8 bg-primary-800 rounded-sm border border-primary-700">
                                 <p className="text-white italic font-serif text-lg">
-                                    "Sleep is the golden chain that ties health and our bodies together."
+                                    "{t('contact.quote')}"
                                 </p>
-                                <p className="text-primary-100 mt-4 text-sm uppercase tracking-widest">— Thomas Dekker</p>
+                                <p className="text-primary-100 mt-4 text-sm uppercase tracking-widest">— {t('contact.author')}</p>
                             </div>
                         </div>
                     </motion.div>
